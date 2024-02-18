@@ -7,14 +7,14 @@ const { showAlert } = useWebAppPopup();
 
 <template>
   <div>
-    <router-link to="/">Ho  me</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/">Home</router-link>
     <router-view /> 
     <MainButton class="btn" text="aleфыаrt" @click="() => showAlert('ofubw')" />
   </div>
 </template>
 
-<style scoped>
+<style>
+  @import './style.css';
   .btn{
     background-color: red;
   }
