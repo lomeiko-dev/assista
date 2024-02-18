@@ -38,10 +38,10 @@ const style: CSSProperties = {
         cursor: pointer;
     }
     .light{
-        color: #303030;
+        color: #FFFFFF;
     }
 
     .dark{
-        color: #FFFFFF;
+        color: #303030;
     }
 </style>

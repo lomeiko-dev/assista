@@ -1,34 +1,43 @@
 <script setup lang="ts">
-    import Text from '../components/ui/Text.vue'
-    import FilledButton from '../components/ui/FilledButton.vue'
-    import Button from "../components/ui/Button.vue"
-    import Field from '../components/ui/field/Field.vue';
-    import FieldPassword from '../components/ui/field/FieldPassword.vue';
-    import RadioButton from '../components/ui/RadioButton.vue'
-import FieldDate from '../components/ui/field/FieldDate.vue';
-import FieldMultiline from "ui/field/FieldMultiline.vue"
-import Range from 'ui/Range.vue';
+import Text from "ui/Text.vue";
+import Button from "ui/Button.vue";
+import FilledButton from "ui/FilledButton.vue";
+
+import logo from "assets/img/logo.png";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const clickRegistrationHandle = () => {
+  router.push({ name: "RegistrationScreen" });
+};
+
+const clickLoginHandle = () => {
+  router.push({ name: "LoginScreen" });
+};
 </script>
 
 <template>
-  <div class="page">
-    <Text :font-size="100" value="124" color-scheme="dark"/>
-    <FilledButton>sdgs</FilledButton>
-    <Button color-scheme="light">
-      agsdgdsg
-    </Button>
-    <Field error-message="sdgsdg" :on-change="() => null" placeholder="Введите текст" is-active-dropdwon>
-      <template #dropdownContent>
-      </template>
-    </Field>
-    <FieldPassword error-message="sdgsdg" :on-change="() => null"/>
-    <FieldDate margin="10px 0 0 0" :on-change="() => null"/>
-    <RadioButton :on-trigger="() => console.log('sdgsckgon,dlfhdg')" label="dsgsdg"/>
-    <RadioButton margin="134px 0 0 0" :on-trigger="() => console.log('sdgsdg')" label="sdgsdgsd"/>
-    <FieldMultiline :on-change="() => null" height="100px"/>
-    <Range :on-change="() => null" :default-value="50" :min-value="0" :max-value="100"/>
+  <div class="container">
+    <img width="189px" :src="logo" />
+    <Text
+      :line-height="34"
+      margin="60px 0 0 0"
+      :font-size="28"
+      :font-weight="700"
+      color-scheme="dark"
+      value="Добро пожаловать!"
+    />
+    <FilledButton @click="clickRegistrationHandle" margin="28px 0 0 0"
+      >Зарегистрироваться</FilledButton
+    >
+    <Button
+      @click="clickLoginHandle"
+      margin="40px 0 0 0"
+      :font-weight="400"
+      :font-size="20"
+      color-scheme="dark"
+      >У меня уже есть аккаунт</Button
+    >
   </div>
 </template>
-
-<style scoped>
-</style>

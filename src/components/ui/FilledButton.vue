@@ -32,7 +32,7 @@
 
         transition: .2s;
     }
-    .button:hover{
+    .button:active{
         background-color: #988D73;
     }
 </style>

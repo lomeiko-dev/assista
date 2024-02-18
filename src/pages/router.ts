@@ -4,6 +4,7 @@ import LoginScreen from 'pages/LoginScreen.vue'
 import RegistrationCustomerScreen from 'pages/RegistrationCustomerScreen.vue'
 import RegistrationExecutorScreen from 'pages/RegistrationExecutorScreen.vue'
 import CreateOrderScreen from 'pages/CreateOrderScreen.vue'
+import RegistrationScreen from 'pages/RegistrationScreen.vue'
 
 const routes = [
   {
@@ -15,6 +16,11 @@ const routes = [
     path: "/login",
     name: "LoginScreen",
     component: LoginScreen,
+  },
+  {
+    path: "/registration",
+    name: "RegistrationScreen",
+    component: RegistrationScreen
   },
   {
     path: "/registration/customer",

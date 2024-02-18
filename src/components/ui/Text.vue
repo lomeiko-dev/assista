@@ -17,6 +17,7 @@ const style: CSSProperties = {
     fontWeight: props.fontWeight,
     lineHeight: `${props.lineHeight}px`,
     margin: props.margin,
+    textAlign: 'center'
 }
 
 </script>
@@ -29,10 +30,10 @@ const style: CSSProperties = {
 
 <style scoped>
     .light{
-        color: #303030;
+        color: #FFFFFF;
     }
 
     .dark{
-        color: #FFFFFF;
+        color: #303030;
     }
 </style>

@@ -64,7 +64,6 @@ const widthLine = computed(() =>
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #007bff;
   cursor: pointer;
 }
 
@@ -77,7 +76,7 @@ const widthLine = computed(() =>
 
 .line{
     position: absolute;
-    top: 10px;
+    top: 14px;
     left: 0;
     height: 5px;
     border-radius: 3px;
