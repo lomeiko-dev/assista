@@ -1,0 +1,27 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+    border: 1px solid #C7C7C7;
+    border-radius: 5px;
+}
+
+.input {
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.error {
+    border: 1px solid #FF0000;
+}
+
+.error-message {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    color: #FF0000;
+}
