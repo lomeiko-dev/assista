@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import VectorIcon from "../../../assets/svg/vector.vue";
+import VectorIcon from "assets/svg/vector.vue";
 import { ref } from "vue";
 
 interface IProps {

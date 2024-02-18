@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import EyeClosedIcon from "../../../assets/svg/eye-closed.vue";
-import EyeOpenIcon from "../../../assets/svg/eye-open.vue";
+import EyeClosedIcon from "assets/svg/eye-closed.vue";
+import EyeOpenIcon from "assets/svg/eye-open.vue";
 
 interface IProps {
   margin?: string;

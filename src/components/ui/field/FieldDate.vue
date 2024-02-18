@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Calendar from "primevue/calendar";
-import AddIcon from "../../../assets/svg/add.vue";
-import RemoveIcon from "../../../assets/svg/remove.vue";
+import AddIcon from "assets/svg/add.vue";
+import RemoveIcon from "assets/svg/remove.vue";
 import { ref, watch } from "vue";
 
 interface IProps {

@@ -14,6 +14,15 @@
     "noEmit": true,
     "jsx": "preserve",
 
+    "baseUrl": "src",
+    "paths": {
+      "app/*": ["app/*"],
+      "pages/*": ["pages/*"],
+      "shared/*": ["components/shared/*"],
+      "ui/*": ["components/ui/*"],
+      "assets/*": ["assets/*"]
+    },
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,

@@ -12,5 +12,14 @@ export default defineConfig({
         host: 'tg-mini-app.local',
         port: 443,
     },
+  },
+  resolve:{
+    alias: {
+      app: '/src/app',
+      pages: '/src/pages',
+      shared: '/src/components/shared',
+      ui: '/src/components/ui',
+      assets: '/src/assets'
+    }
   }
 })
