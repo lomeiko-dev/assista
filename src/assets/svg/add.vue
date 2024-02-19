@@ -1,8 +1,18 @@
+<script setup lang="ts">
+interface IProps{
+  width?: string,
+  height?: string
+}
+
+const props = defineProps<IProps>()
+
+</script>
+
 <template>
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="23"
-    height="23"
+    :width="props.width ?? '23'"
+    :height="props.height ?? '23px'"
     viewBox="0 0 23 23"
     fill="none"
   >

@@ -9,21 +9,23 @@ interface IProps {
   placeholder?: string;
   margin?: string;
   errorMessage?: string;
+  value: string;
 }
 
 const props = defineProps<IProps>();
 
+const date = ref<Date>(new Date());
+
+watch(date, () => {
+  props.onChange(formatDate(date.value));
+  toggleShowDateHandle()
+});
+
 const isShowDate = ref(false);
-const valueDate = ref<Date>(new Date());
 
 const formatDate = (date: Date) => {
-  return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+  return `${date.getDate() < 10 ? '0' : ''}${date.getDate()}.${date.getMonth() < 10 ? '0' : ''}${date.getMonth() + 1}.${date.getFullYear()}`;
 };
-
-watch(valueDate, () => {
-  props.onChange(formatDate(valueDate.value));
-  isShowDate.value = false;
-});
 
 const toggleShowDateHandle = () => {
   isShowDate.value = !isShowDate.value;
@@ -31,35 +33,46 @@ const toggleShowDateHandle = () => {
 </script>
 
 <template>
-  <div :style="`margin: ${props.margin}`">
+  <div class="wrap" :style="`margin: ${props.margin}`">
     <div v-if="errorMessage" class="error-message">
       {{ props.errorMessage }}
     </div>
     <div :class="`wrapper ${props.errorMessage && 'error'}`">
       <input
+        @click="isShowDate = true"
         @input="(e: any) => props.onChange(e.target.value)"
         :placeholder="props.placeholder"
-        :value="formatDate(valueDate)"
+        :value="props.value"
         class="input"
       />
 
       <AddIcon @click="toggleShowDateHandle" v-if="!isShowDate" class="icon" />
       <RemoveIcon @click="toggleShowDateHandle" v-else class="icon" />
     </div>
+    <Calendar
+      class="calendar"
+      v-if="isShowDate"
+      v-model="date"
+      inline
+      showWeek
+    />
   </div>
-  <Calendar
-    class="calendar"
-    v-if="isShowDate"
-    v-model="valueDate"
-    inline
-    showWeek
-  />
 </template>
 
 <style scoped>
 @import "./style.scss";
 
+.wrap {
+  position: relative;
+}
+
+.error-message{
+  top: -15px;
+  position: absolute;
+}
+
 .calendar {
+  position: absolute;
   margin-top: 5px;
   width: 100%;
 }

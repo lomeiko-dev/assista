@@ -3,11 +3,13 @@ import VectorIcon from "assets/svg/vector.vue";
 import { ref } from "vue";
 
 interface IProps {
+  type?: 'text' | 'number' | 'email',
+  pattern?: string
   value?: string;
   onChange: (value: string) => void;
   placeholder?: string;
   margin?: string;
-  isActiveDropdwon: boolean;
+  isActiveDropdwon?: boolean;
   classDropdown?: string;
   errorMessage?: string;
 }
@@ -18,12 +20,14 @@ const isOpenDropdown = ref(false);
 </script>
 
 <template>
-  <div :style="`margin: ${props.margin}`">
+  <div style="position: relative;" :style="`margin: ${props.margin}`">
     <div v-if="errorMessage" class="error-message">
       {{ props.errorMessage }}
     </div>
     <div :class="`wrapper ${props.errorMessage && 'error'}`">
       <input
+        :pattern="props.pattern"
+        :type="props.type"
         @input="(e: any) => props.onChange(e.target.value)"
         :placeholder="props.placeholder"
         :value="props.value"
@@ -51,6 +55,11 @@ const isOpenDropdown = ref(false);
 
 <style scoped lang="scss">
 @import "./style.scss";
+
+.error-message{
+  top: -15px;
+  position: absolute;
+}
 
 .dropdown {
   position: relative;

@@ -7,7 +7,8 @@ interface IProps {
     fontSize?: number,
     fontWeight?: 300 | 400 | 500 | 600 | 700 | 800 | 900
     lineHeight?: number,
-    margin?: string
+    margin?: string,
+    isCenter?: boolean
 }
 
 const props = defineProps<IProps>()
@@ -17,7 +18,7 @@ const style: CSSProperties = {
     fontWeight: props.fontWeight,
     lineHeight: `${props.lineHeight}px`,
     margin: props.margin,
-    textAlign: 'center'
+    textAlign: props.isCenter ? 'center' : undefined,
 }
 
 </script>

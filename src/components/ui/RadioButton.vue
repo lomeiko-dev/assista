@@ -1,11 +1,17 @@
 <script setup lang="ts">
+import {ref} from 'vue'
+
 interface IProps {
   label?: string;
+  checked?: boolean,
   margin?: string;
   onTrigger: () => void;
 }
 
 const props = defineProps<IProps>();
+
+const valueRadio = ref<boolean>(props.checked)
+
 </script>
 
 <template>
@@ -14,6 +20,7 @@ const props = defineProps<IProps>();
       @input="props.onTrigger"
       type="radio"
       name="custom-radio"
+      :checked="valueRadio"
     />
     <span class="radio-btn"></span>
     <div>{{ props.label }}</div>

@@ -16,7 +16,7 @@ export default defineConfig({
   resolve:{
     alias: {
       app: '/src/app',
-      pages: '/src/pages',
+      screens: '/src/screens',
       shared: '/src/components/shared',
       ui: '/src/components/ui',
       assets: '/src/assets',

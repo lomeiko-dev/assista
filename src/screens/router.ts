@@ -1,10 +1,10 @@
 import { createWebHistory, createRouter } from "vue-router";
-import HomeScreen from 'pages/HomeScreen.vue'
-import LoginScreen from 'pages/LoginScreen.vue'
-import RegistrationCustomerScreen from 'pages/RegistrationCustomerScreen.vue'
-import RegistrationExecutorScreen from 'pages/RegistrationExecutorScreen.vue'
-import CreateOrderScreen from 'pages/CreateOrderScreen.vue'
-import RegistrationScreen from 'pages/RegistrationScreen.vue'
+import HomeScreen from 'screens/HomeScreen.vue'
+import LoginScreen from 'screens/LoginScreen.vue'
+import RegistrationCustomerScreen from 'screens/RegistrationCustomerScreen.vue'
+import RegistrationExecutorScreen from 'screens/RegistrationExecutorScreen.vue'
+import CreateOrderScreen from 'screens/CreateOrderScreen.vue'
+import RegistrationScreen from 'screens/RegistrationScreen.vue'
 
 const routes = [
   {

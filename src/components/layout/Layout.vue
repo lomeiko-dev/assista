@@ -4,17 +4,20 @@ import logo from "assets/img/logo.png"
 
 <template>
     <div class="container">
-        <img width="189px" :src="logo"/>
+        <div class="wrap-logo">
+            <img width="189px" class="logo" :src="logo"/>
+        </div>
         <slot />
     </div>
 </template>
 
 <style scoped>
+.wrap-logo{
+    width: fit-content;
+    margin: 0 auto;
+}
 .container{
   margin: 0 20px;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 </style>
