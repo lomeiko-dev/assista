@@ -19,7 +19,8 @@ export default defineConfig({
       pages: '/src/pages',
       shared: '/src/components/shared',
       ui: '/src/components/ui',
-      assets: '/src/assets'
+      assets: '/src/assets',
+      layout: '/src/components/layout'
     }
   }
 })

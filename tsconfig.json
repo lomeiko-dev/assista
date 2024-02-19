@@ -20,7 +20,8 @@
       "pages/*": ["pages/*"],
       "shared/*": ["components/shared/*"],
       "ui/*": ["components/ui/*"],
-      "assets/*": ["assets/*"]
+      "assets/*": ["assets/*"],
+      "layout/*": ["components/layout/*"]
     },
 
     /* Linting */

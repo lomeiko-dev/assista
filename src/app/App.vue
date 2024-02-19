@@ -1,21 +1,16 @@
 <script setup lang="ts">
-import { MainButton, useWebAppPopup } from 'vue-tg';
-
-const { showAlert } = useWebAppPopup();
-
+// import { MainButton, useWebAppPopup } from "vue-tg";
+// const { showAlert } = useWebAppPopup();
+import Layout from "layout/Layout.vue";
 </script>
 
 <template>
-  <div>
-    <router-link to="/">Home</router-link>
-    <router-view /> 
-    <MainButton class="btn" text="aleфыаrt" @click="() => showAlert('ofubw')" />
-  </div>
+  <Layout>
+    <router-view />
+  </Layout>
+  <!-- <MainButton class="btn" text="aleфыаrt" @click="() => showAlert('ofubw')" /> -->
 </template>
 
 <style>
-  @import './style.css';
-  .btn{
-    background-color: red;
-  }
+@import "./style.css";
 </style>
