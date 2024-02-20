@@ -39,6 +39,7 @@ const clickNextHandle = () => {
 </script>
 
 <template>
+  <!-- https://primevue.org/inputmask/ здесь инпут с маской -->
   <Field
     :error-message="errorNumberPhone"
     :value="valueNumberPhone"

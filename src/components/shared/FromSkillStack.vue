@@ -79,6 +79,7 @@ const clickNextHandle = () => {
 </script>
 
 <template>
+  <!-- https://primevue.org/multiselect/#chips -->
   <Field
     :value="valueSkills"
     is-active-dropdwon
@@ -112,6 +113,7 @@ const clickNextHandle = () => {
       v-for="language in languages"
       :key="language.language"
     >
+    <!-- https://primevue.org/checkbox/#group -->
       <Checkbox
         :label="language.language"
         :on-change="(isChecked) => toggleLanguage(isChecked, language)"

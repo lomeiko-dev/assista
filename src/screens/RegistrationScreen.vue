@@ -24,9 +24,11 @@ const clickRegistrationExecutorHandle = () => {
       color-scheme="dark"
       value="Регистрация"
     />
+     <!-- где ховеры? меняй фон -->
     <FilledButton @click="clickRegistrationCustomerHandle" margin="50px 0 0 0"
       >Я заказчик</FilledButton
     >
+    <!-- ховер добавь задний фон светлосерый размером как у кнопки выше -->
     <Button
       @click="clickRegistrationExecutorHandle"
       margin="40px 0 0 0"

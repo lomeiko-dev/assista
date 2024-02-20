@@ -87,14 +87,16 @@
     </Field>
 
     <div class="slice">
+        <!-- https://primevue.org/inputnumber/ -->
         <Text color-scheme="dark" value="Цена"/>
         <FieldPrice class="field" currency="₽" :on-change="(value) => valuePrice = Number(value)"/>
     </div>
+    <!-- https://primevue.org/inputgroup/#basic сделай как вот тут, чтоб можно было закрепить слово до в начале, а в конце выбор день, неделя, месяц -->
     <div class="slice">
         <Text color-scheme="dark" value="Срок"/>
         <Field :value="valueDeadline" class="field" :on-change="(value) => valueDeadline = value"/>
     </div>
-
+    <!-- https://primevue.org/slider/#step -->
     <div class="range-wrap">
         <Range :on-change="(value) => valueDeadline = scales[value]" :default-value="0" :max-value="4" :min-value="0"/>
         <div class="scale">

@@ -30,11 +30,13 @@ const changeImageHandle = (event: Event) => {
 </script>
 
 <template>
+  
   <div class="wrap">
     <input @change="changeImageHandle" ref="inputRef" class="hide" type="file">
     <div class="wrap-avatar">
       <img :src="urlImage" class="avatar" />
       <AddIcon v-if="urlImage === ''" @click="showFilePickerHandle" width="43px" height="43px" class="add-icon" />
+      <!-- на изменение аватарки сделай просто чтоб при ховере снова появлялся плюсик и убери эту иконку. То есть мы наводим - фон становится чутка серым и появляется плюсик посередине и при нажатии на весь блок фотки выбираем новое фото -->
       <PenIcon v-else @click="showFilePickerHandle" class="pen-icon"/>
     </div>
     <FilledButton margin="40px 0 0 0">Далее</FilledButton>

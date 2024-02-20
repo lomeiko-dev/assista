@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { CSSProperties } from 'vue/dist/vue.js';
+
 interface IProps {
   value?: string
   placeholder?: string;
@@ -10,6 +11,7 @@ interface IProps {
 
 const props = defineProps<IProps>();
 
+// убрери типизацию. выдает ошибку и она здесь не нужна
 const style: CSSProperties = {
     margin: props.margin,
     height: `${props.height}px`

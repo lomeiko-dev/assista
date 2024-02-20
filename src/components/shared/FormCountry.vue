@@ -65,6 +65,7 @@ const changeCityHandler = (value: string) => {
 </script>
 
 <template>
+  <!-- Возьми готовый компонент https://primevue.org/dropdown/ -->
   <Field
     :error-message="errorCountry"
     :on-change="changeCountryHandler"

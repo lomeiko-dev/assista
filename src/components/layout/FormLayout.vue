@@ -10,12 +10,14 @@ interface IProps {
   onClickNext?: () => void;
 }
 
-const props = defineProps<IProps>();
+const props = defineProps<IProps>()
 </script>
 
 <template>
   <div v-if="props.title || props.subTitle" class="head">
     <div class="title">
+      <!-- сделай не бордер, а просто круглый серый фон вокруг, который больше этой свг. Свг не должна сжиматься -->
+      <!-- Кнопка пропустить тоже ховер. На всех кнопках ховеры  -->
       <BackIcon class="back" v-if="props.onBack" @click="props.onBack" />
       <Text
         v-if="props.title"
@@ -62,7 +64,6 @@ const props = defineProps<IProps>();
     left: 0;
     border-radius: 50%;
     cursor: pointer;
-
     transition: .2s;
   }
 
