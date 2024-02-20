@@ -4,7 +4,7 @@ import EyeClosedIcon from "assets/svg/eye-closed.vue";
 import EyeOpenIcon from "assets/svg/eye-open.vue";
 
 interface IProps {
-  value: string
+  value?: string
   margin?: string;
   placeholder?: string;
   onChange: (value: string) => void;

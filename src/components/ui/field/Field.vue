@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import VectorIcon from "assets/svg/vector.vue";
+import { CSSProperties } from 'vue';
 import { ref } from "vue";
 
 interface IProps {
+  width?: string
   type?: 'text' | 'number' | 'email',
   pattern?: string
   value?: string;
@@ -10,17 +12,22 @@ interface IProps {
   placeholder?: string;
   margin?: string;
   isActiveDropdwon?: boolean;
-  classDropdown?: string;
   errorMessage?: string;
 }
 
 const props = defineProps<IProps>();
 
+const cssStyle: CSSProperties = {
+  margin: props.margin,
+  width: props.width ? '100%' : undefined,
+  maxWidth: props.width
+}
+
 const isOpenDropdown = ref(false);
 </script>
 
 <template>
-  <div style="position: relative;" :style="`margin: ${props.margin}`">
+  <div class="wrap" :style="cssStyle">
     <div v-if="errorMessage" class="error-message">
       {{ props.errorMessage }}
     </div>
@@ -41,13 +48,14 @@ const isOpenDropdown = ref(false);
     </div>
 
     <div
-      :class="`dropdown ${props.classDropdown} ${
+      @click="() => isOpenDropdown = false"
+      :class="`dropdown ${
         isOpenDropdown && 'open-dropdown'
       }`"
       v-if="props.isActiveDropdwon"
     >
       <div class="dropdown-inner">
-        <slot name="dropdownContent" />
+        <slot/>
       </div>
     </div>
   </div>
@@ -56,17 +64,21 @@ const isOpenDropdown = ref(false);
 <style scoped lang="scss">
 @import "./style.scss";
 
+.wrap{
+  position: relative;
+}
+
 .error-message{
   top: -15px;
   position: absolute;
 }
 
 .dropdown {
-  position: relative;
+  position: absolute;
   z-index: -1;
   opacity: 0;
   margin-top: 5px;
-  width: calc(100% - 40px);
+  width: 100%;
   background-color: #ffffff;
 
   border: 1px solid #a3a3a3;

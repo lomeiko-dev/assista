@@ -9,14 +9,13 @@ import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
 
 const step = ref(0);
-const router = useRouter()
+const router = useRouter();
 
 interface IForm {
   formFullName?: IFormFullname;
   formMail?: IFormMail;
+  password?: string;
 }
-
-const password = ref('')
 
 const formRegistration = ref<IForm>({
   formFullName: undefined,
@@ -24,25 +23,17 @@ const formRegistration = ref<IForm>({
 });
 
 const backHandle = () => {
-  if(step.value === 0)
-    router.go(-1)
+  if (step.value === 0) router.go(-1);
 
-  step.value--
-}
+  step.value--;
+};
 
 watch(formRegistration.value, () => {
   step.value++;
 });
 
 const clickRegistrationHandle = (value: string) => {
-  console.log(value)
-  password.value = value;
-  console.log(
-    formRegistration.value.formFullName,
-    formRegistration.value.formMail,
-    password
-  );
-  step.value++;
+  formRegistration.value.password = value;
 };
 
 const clickSetDateHandle = (date: string) => {
@@ -51,7 +42,6 @@ const clickSetDateHandle = (date: string) => {
 };
 
 const clickSetAvatarHandle = (image: string) => {
-
   console.log(image);
 };
 </script>
@@ -63,27 +53,39 @@ const clickSetAvatarHandle = (image: string) => {
       :default-last-name="formRegistration.formFullName?.lastName"
       :default-patronymic="formRegistration.formFullName?.patronymic"
       :default-gender="formRegistration.formFullName?.gender"
-      :on-click-next="(form) => (formRegistration.formFullName = form)"/>
+      :on-click-next="(form) => (formRegistration.formFullName = form)"
+    />
   </FormLayout>
 
   <FormLayout v-if="step === 1" :on-back="backHandle" title="Регистрация">
     <FormMail
       :default-number-phone="formRegistration.formMail?.numberPhone"
       :default-email="formRegistration.formMail?.email"
-      :on-click-next="(form) => (formRegistration.formMail = form)"/>
+      :on-click-next="(form) => (formRegistration.formMail = form)"
+    />
   </FormLayout>
 
   <FormLayout v-if="step === 2" :on-back="backHandle" title="Регистрация">
-    <FormPassword 
-      :default-password="password"
-      :on-click-registration="clickRegistrationHandle"/>
+    <FormPassword
+      :default-password="formRegistration.password"
+      :on-click-registration="clickRegistrationHandle"
+    />
   </FormLayout>
 
-  <FormLayout v-if="step === 3" :on-skip="() => step++" title="Вы успешно зарегистрированы!" sub-title="Давайте заполним еще немного данных">
+  <FormLayout
+    v-if="step === 3"
+    :on-skip="() => step++"
+    title="Вы успешно зарегистрированы!"
+    sub-title="Давайте заполним еще немного данных"
+  >
     <FormDateBirth :on-click-next="clickSetDateHandle" />
   </FormLayout>
 
-  <FormLayout v-if="step === 4" :on-skip="() => step++" sub-title="Загрузите аватар">
+  <FormLayout
+    v-if="step === 4"
+    :on-skip="() => step++"
+    sub-title="Загрузите аватар"
+  >
     <FormAvatar :on-click-next="clickSetAvatarHandle" />
   </FormLayout>
 </template>
