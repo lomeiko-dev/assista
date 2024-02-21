@@ -14,7 +14,6 @@ const valueDate = ref(props.defaultDate || '');
 </script>
 
 <template>
-  <!-- зачем усложнаяешь? https://primevue.org/calendar/ вот тут тебе готовый календарь с инпутом и локализируй его -->
   <FieldDate
     placeholder="Дата рождения"
     :value="valueDate"

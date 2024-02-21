@@ -63,6 +63,7 @@ const skipHandle = () => step.value++;
 
   <FormLayout v-if="step === 1" :on-back="backHandle" title="Регистрация">
     <FormCountry
+      is-show-button
       :default-country="formRegistration.formCountry?.country"
       :default-city="formRegistration.formCountry?.city"
       :on-click-next="(form) => (formRegistration.formCountry = form)"

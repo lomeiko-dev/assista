@@ -16,9 +16,9 @@ const props = defineProps<IProps>()
 <template>
   <div v-if="props.title || props.subTitle" class="head">
     <div class="title">
-      <!-- сделай не бордер, а просто круглый серый фон вокруг, который больше этой свг. Свг не должна сжиматься -->
-      <!-- Кнопка пропустить тоже ховер. На всех кнопках ховеры  -->
-      <BackIcon class="back" v-if="props.onBack" @click="props.onBack" />
+      <div class="wrap-back">
+        <BackIcon v-if="props.onBack" @click="props.onBack" />
+      </div>
       <Text
         v-if="props.title"
         :font-size="28"
@@ -58,18 +58,20 @@ const props = defineProps<IProps>()
   align-items: center;
   margin-bottom: 30px;
 
-  .back {
+  .wrap-back {
     position: absolute;
-    top: 10px;
+    top: 5px;
+    width: 36px;
+    height: 36px;
+    padding: 5px;
     left: 0;
     border-radius: 50%;
     cursor: pointer;
     transition: .2s;
   }
 
-  .back:hover{
-    border: 1px solid black;
-    padding: 2px;
+  .wrap-back:hover{
+    background-color: rgba($color: #333, $alpha: .1);
   }
 
   .title {

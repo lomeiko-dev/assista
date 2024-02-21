@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import Field from "ui/field/Field.vue";
 import FilledButton from "ui/FilledButton.vue";
+import InputMask from 'primevue/inputmask';
+import Text from "ui/Text.vue";
 import { ref } from "vue";
 
 
@@ -39,13 +41,11 @@ const clickNextHandle = () => {
 </script>
 
 <template>
-  <!-- https://primevue.org/inputmask/ здесь инпут с маской -->
-  <Field
-    :error-message="errorNumberPhone"
-    :value="valueNumberPhone"
-    :on-change="(value) => (valueNumberPhone = value)"
-    placeholder="Телефон*"
-  />
+  <div class="wrap-input-mask">
+    <Text color-scheme="dark" class="error" v-if="errorNumberPhone" :value="errorNumberPhone"/>
+    <InputMask id="basic" :class="`${errorNumberPhone && 'p-invalid'}`" v-model="valueNumberPhone" mask="+7 (999) 999 99 99" placeholder="Телефон*" />
+  </div>
+
   <Field
     type="email"
     :value="valueEmail"
@@ -58,4 +58,25 @@ const clickNextHandle = () => {
   >
 </template>
 
-<style scoped></style>
+<style scoped>
+
+.wrap-input-mask{
+  position: relative;
+  
+  .error{
+    position: absolute;
+    top: -20px;
+    left: 0;
+    color: red;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+  }
+
+  #basic{
+    padding: 10px 15px;
+    width: 100%;
+  }
+}
+
+</style>

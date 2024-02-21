@@ -37,6 +37,12 @@ const style: CSSProperties = {
         background-color: transparent;
         border: none;
         cursor: pointer;
+        border-radius: 100px;
+        padding: 5px 10px;
+    }
+
+    .button:hover{
+        background-color: rgba(3, 3, 3, .1);
     }
     .light{
         color: #FFFFFF;

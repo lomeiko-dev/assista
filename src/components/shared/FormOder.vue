@@ -1,133 +1,181 @@
 <script setup lang="ts">
-    import Field from 'ui/field/Field.vue';
-    import FieldMultiline from 'ui/field/FieldMultiline.vue';
-    import FieldPrice from 'ui/field/FieldPrice.vue';
-    import RadioButton from 'ui/RadioButton.vue';
-    import Text from 'ui/Text.vue';
-    import Range from 'ui/Range.vue';
-    import FilledButton from 'ui/FilledButton.vue';
-    import PopupItem from 'ui/PopupItem.vue';
-    import {ref} from 'vue'
+import Field from "ui/field/Field.vue";
+import FieldMultiline from "ui/field/FieldMultiline.vue";
+import FieldPrice from "ui/field/FieldPrice.vue";
+import RadioButton from "ui/RadioButton.vue";
+import Text from "ui/Text.vue";
+import Range from "ui/Range.vue";
+import FilledButton from "ui/FilledButton.vue";
+import PopupItem from "ui/PopupItem.vue";
+import InputGroup from "primevue/inputgroup";
+import InputGroupAddon from "primevue/inputgroupaddon";
+import InputText from "primevue/inputtext";
+import { ref } from "vue";
 
-    interface IOrderForm {
-        deadline: string,
-        name: string
-        description: string,
-        price: number,
-        skills: string
-    }
+interface IOrderForm {
+  deadline: string;
+  name: string;
+  description: string;
+  price: number;
+  skills: string;
+}
 
-    interface IProps {
-        onClickCreateOrder: (form: IOrderForm) => void
-    }
+interface IProps {
+  onClickCreateOrder: (form: IOrderForm) => void;
+}
 
-    const props = defineProps<IProps>()
-    
-    const scales = [
-        '0дн',
-        '1нед',
-        '1мес',
-        '2мес',
-        '3мес',
-    ]
+const props = defineProps<IProps>();
 
-    const skills = [
-        'paython',
-        'lua',
-        'git',
-        'html',
-        'css',
-        'js',
-        'react',
-        'go',
-        'vue',
-        'C#',
-        'WPF'
-    ]
+const scales = ["0дн", "1нед", "1мес", "2мес", "3мес"];
 
-    const valueDeadline = ref('')
-    const valueName = ref('')
-    const valueDescription = ref('')
-    const valueSkills = ref('')
-    const isOnline = ref(true)
-    const valuePrice = ref(0)
+const skills = [
+  "paython",
+  "lua",
+  "git",
+  "html",
+  "css",
+  "js",
+  "react",
+  "go",
+  "vue",
+  "C#",
+  "WPF",
+];
 
-    const clickValueSkillsHandle = (value: string) => {
-        valueSkills.value += `${valueSkills.value.length !== 0 ? ', ' : ''}${value}`
-    }
+const valueDeadline = ref("");
+const valueName = ref("");
+const valueDescription = ref("");
+const valueSkills = ref("");
+const isOnline = ref(true);
+const valuePrice = ref(0);
 
-    const clickCreateOrderHandle = () => {
-        const form: IOrderForm = {
-            deadline: valueDeadline.value,
-            description: valueDescription.value,
-            name: valueName.value,
-            price: valuePrice.value,
-            skills: valueSkills.value
-        }
+const clickValueSkillsHandle = (value: string) => {
+  valueSkills.value += `${valueSkills.value.length !== 0 ? ", " : ""}${value}`;
+};
 
-        props.onClickCreateOrder(form)
-    }
+const clickCreateOrderHandle = () => {
+  const form: IOrderForm = {
+    deadline: valueDeadline.value,
+    description: valueDescription.value,
+    name: valueName.value,
+    price: valuePrice.value,
+    skills: valueSkills.value,
+  };
+
+  props.onClickCreateOrder(form);
+};
 </script>
 
 <template>
-    <Field :value="valueName" :on-change="(value) => valueName = value" placeholder="Название"/>
-    <FieldMultiline :value="valueDescription" margin="15px 0 0 0" :height="160" :on-change="(value) => valueDescription = value" placeholder="Техническое задание"/>
+  <Field
+    :value="valueName"
+    :on-change="(value) => (valueName = value)"
+    placeholder="Название"
+  />
+  <FieldMultiline
+    :value="valueDescription"
+    margin="15px 0 0 0"
+    :height="160"
+    :on-change="(value) => (valueDescription = value)"
+    placeholder="Техническое задание"
+  />
 
-    <RadioButton checked margin="15px 0 0 0" :on-trigger="() => isOnline = true" label="онлайн"/>
-    <RadioButton margin="10px 0 0 0" :on-trigger="() => isOnline = false" label="оффлайн"/>
+  <RadioButton
+    checked
+    margin="15px 0 0 0"
+    :on-trigger="() => (isOnline = true)"
+    label="онлайн"
+  />
+  <RadioButton
+    margin="10px 0 0 0"
+    :on-trigger="() => (isOnline = false)"
+    label="оффлайн"
+  />
 
-    <div v-if="!isOnline">
-        <slot name="formCountry"/>
+  <div v-if="!isOnline">
+    <slot name="formCountry" />
+  </div>
+
+  <Field
+    :value="valueSkills"
+    margin="15px 0 0 0"
+    is-active-dropdwon
+    placeholder="Выберите навыки"
+    :on-change="(value) => (valueSkills = value)"
+  >
+    <PopupItem
+      styled="outline"
+      :on-click="() => clickValueSkillsHandle(skill)"
+      v-for="skill in skills"
+      :key="skill"
+    >
+      {{ skill }}
+    </PopupItem>
+  </Field>
+
+  <div class="slice">
+    <Text color-scheme="dark" value="Цена" />
+    <FieldPrice
+      class="field"
+      currency="₽"
+      :on-change="(value) => (valuePrice = Number(value))"
+    />
+  </div>
+  <div class="slice">
+    <Text color-scheme="dark" value="Срок" />
+    <InputGroup class="field">
+      <InputGroupAddon> До: </InputGroupAddon>
+      <InputText v-model="valueDeadline" />
+    </InputGroup>
+  </div>
+
+  <div class="range-wrap">
+    <Range
+      :on-change="(value) => (valueDeadline = scales[value])"
+      :default-value="0"
+      :max-value="4"
+      :min-value="0"
+    />
+    <div class="scale">
+      <Text
+        color-scheme="dark"
+        v-for="item in scales"
+        :key="item"
+        :value="item"
+      />
     </div>
+  </div>
 
-    <Field :value="valueSkills" margin="15px 0 0 0" is-active-dropdwon placeholder="Выберите навыки" :on-change="(value) => valueSkills = value">
-        <PopupItem styled="line" :on-click="() => clickValueSkillsHandle(skill)" v-for="skill in skills" :key="skill">
-            {{ skill }}
-        </PopupItem>
-    </Field>
-
-    <div class="slice">
-        <!-- https://primevue.org/inputnumber/ -->
-        <Text color-scheme="dark" value="Цена"/>
-        <FieldPrice class="field" currency="₽" :on-change="(value) => valuePrice = Number(value)"/>
-    </div>
-    <!-- https://primevue.org/inputgroup/#basic сделай как вот тут, чтоб можно было закрепить слово до в начале, а в конце выбор день, неделя, месяц -->
-    <div class="slice">
-        <Text color-scheme="dark" value="Срок"/>
-        <Field :value="valueDeadline" class="field" :on-change="(value) => valueDeadline = value"/>
-    </div>
-    <!-- https://primevue.org/slider/#step -->
-    <div class="range-wrap">
-        <Range :on-change="(value) => valueDeadline = scales[value]" :default-value="0" :max-value="4" :min-value="0"/>
-        <div class="scale">
-            <Text color-scheme="dark" v-for="item in scales" :key="item" :value="item"/>
-        </div>
-    </div>
-
-    <FilledButton @click="clickCreateOrderHandle" margin="40px 0 0 0">Создать заказ</FilledButton>
+  <FilledButton @click="clickCreateOrderHandle" margin="40px 0 0 0"
+    >Создать заказ</FilledButton
+  >
 </template>
 
 <style scoped>
-
-.range-wrap{
-    margin-top: 15px;
+.range-wrap {
+  margin-top: 15px;
 }
-.slice{
-    margin-top: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 23px;
+.slice {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 23px;
 
-    .field{
-        width: 100%;
-        max-width: 245px;
-    }
+  .field {
+    width: 100%;
+    max-width: 245px;
+    height: 40px;
+  }
 }
 
-.scale{
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-    }
+.p-inputtext{
+    padding: 10px 20px;
+}
+
+.scale {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 </style>

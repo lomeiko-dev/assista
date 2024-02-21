@@ -34,10 +34,11 @@ const changeImageHandle = (event: Event) => {
   <div class="wrap">
     <input @change="changeImageHandle" ref="inputRef" class="hide" type="file">
     <div class="wrap-avatar">
-      <img :src="urlImage" class="avatar" />
-      <AddIcon v-if="urlImage === ''" @click="showFilePickerHandle" width="43px" height="43px" class="add-icon" />
-      <!-- на изменение аватарки сделай просто чтоб при ховере снова появлялся плюсик и убери эту иконку. То есть мы наводим - фон становится чутка серым и появляется плюсик посередине и при нажатии на весь блок фотки выбираем новое фото -->
-      <PenIcon v-else @click="showFilePickerHandle" class="pen-icon"/>
+      <img @click="showFilePickerHandle" :src="urlImage" class="avatar" />
+      <AddIcon v-if="urlImage === ''" width="43px" height="43px" class="add-icon" />
+      <div v-else @click="showFilePickerHandle" class="wrap-pen">
+        <PenIcon/>
+      </div>
     </div>
     <FilledButton margin="40px 0 0 0">Далее</FilledButton>
   </div>
@@ -65,6 +66,13 @@ const changeImageHandle = (event: Event) => {
     height: 100%;
     background-color: #d9d9d9;
     border-radius: 50%;
+    cursor: pointer;
+
+    transition: .2s;
+  }
+
+  .avatar:hover{
+    background-color: #a0a0a0;
   }
 
   .add-icon {
@@ -72,11 +80,16 @@ const changeImageHandle = (event: Event) => {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    cursor: pointer;
+    pointer-events: none;
   }
 
-  .pen-icon{
+  .wrap-pen{
     position: absolute;
+    width: 34px;
+    height: 34px;
+    background-color: #d9d9d9;
+    border-radius: 50%;
+    padding: 2px;
     right: 20px;
     top: 13px;
     cursor: pointer;

@@ -35,4 +35,8 @@
     .button:active{
         background-color: #988D73;
     }
+
+    .button:hover{
+        background-color: #988D73;
+    }
 </style>
